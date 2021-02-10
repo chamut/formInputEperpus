@@ -46,6 +46,26 @@ def buku():
         mydb.commit()
     return render_template('cobauploadya.html')
 
+@app.route("/user", methods=['GET', 'POST'])
+def userdata():
+    if request.method == 'POST':
+        userdata = request.form
+        username = userdata['username']
+        password = userdata['password']
+        nama = userdata['nama']
+        fakultas = userdata['fakultas']
+        jurusan = userdata['jurusan']
+        angkatan = userdata['angkatan']
+        status = userdata['status']
+
+        cur = mydb.cursor()
+        cur.execute(
+            "INSERT INTO user (iduser, username, password, nama_lengkap, fakultas, jurusan, angkatan, status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            (0, username, password, nama, fakultas, jurusan, int(angkatan), status))
+        mydb.commit()
+    return render_template('formUser.html')
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=1288, debug=True)
