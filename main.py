@@ -47,6 +47,7 @@ def buku():
             "INSERT INTO buku (idbuku, judul_buku, isbn, pengarang, penerbit, tahun_terbit, jumlah_halaman, sinopsis, foto_buku, kategori, file_buku, jumlah_copy, total_dipinjam) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
             (0, judul, isbn, pengarang, penerbit, int(tahun), int(halaman), sinopsis, foto, kategori, file, int(copy), 0))
         mydb.commit()
+        cur.close()
     return render_template('cobauploadya.html')
 
 @app.route("/user", methods=['GET', 'POST'])
@@ -66,6 +67,7 @@ def userdata():
             "INSERT INTO user (iduser, username, password, nama_lengkap, fakultas, jurusan, angkatan, status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
             (0, username, password, nama, fakultas, jurusan, int(angkatan), status))
         mydb.commit()
+        cur.close()
     return render_template('formUser.html')
 
 
